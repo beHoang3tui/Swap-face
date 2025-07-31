@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: face-swap-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -c "import os, urllib.request; model_path = 'models/inswapper_128_fp16.onnx'; url = 'https://huggingface.co/hacksider/deep-live-cam/resolve/main/inswapper_128_fp16.onnx'; os.makedirs('models', exist_ok=True); (not os.path.exists(model_path)) and (print('Downloading model...'), urllib.request.urlretrieve(url, model_path), print('Model downloaded!'))" && gunicorn -w 1 -b 0.0.0.0:$PORT --timeout 300 --max-requests 1000 --max-requests-jitter 50 app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16 

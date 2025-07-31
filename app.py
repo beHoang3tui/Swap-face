@@ -4,10 +4,10 @@ Simple Face Swap Web App
 Dựa trên simple_face_swap.py để tạo web interface
 """
 
+import os
 import cv2
 import insightface
 import numpy as np
-import os
 import uuid
 import logging
 from flask import Flask, render_template_string, request, jsonify, send_file, url_for
@@ -712,6 +712,8 @@ if __name__ == '__main__':
     logger.info("🚀 Khởi động Simple Face Swap Web App...")
     logger.info(f"📁 Upload folder: {UPLOAD_FOLDER}")
     logger.info(f"📁 Result folder: {RESULT_FOLDER}")
-    logger.info("🌐 Mở trình duyệt tại: http://localhost:5678")
     
-    app.run(host='0.0.0.0', port=5678, debug=True) 
+    port = int(os.environ.get('PORT', 5000))
+    logger.info(f"🌐 Mở trình duyệt tại: http://localhost:{port}")
+    
+    app.run(host='0.0.0.0', port=port, debug=False) 
