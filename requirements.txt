@@ -4,3 +4,4 @@ insightface
 numpy
 werkzeug
 gunicorn
+onnxruntime
