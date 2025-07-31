@@ -1,11 +1,13 @@
 # Sử dụng Python slim để giảm dung lượng image
 FROM python:3.9-slim
 
-# Cài đặt các thư viện hệ thống cần thiết cho OpenCV và insightface
+# Cài đặt các thư viện hệ thống cần thiết cho OpenCV, insightface và build tools
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     libglib2.0-0 \
     wget \
+    build-essential \
+    g++ \
     && rm -rf /var/lib/apt/lists/*
 
 # Tạo thư mục làm việc
